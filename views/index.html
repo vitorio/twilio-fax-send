@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XOXO fax send</title>
+    <meta name="description" content="Send a PDF as a fax for XOXO frands!" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.glitch.com/29d80af9-3e0a-4389-8807-cea9e546df37%2Fapple-touch-icon.png?v=1587944998403">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.glitch.com/29d80af9-3e0a-4389-8807-cea9e546df37%2Ffavicon-32x32.png?v=1587944998424">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.glitch.com/29d80af9-3e0a-4389-8807-cea9e546df37%2Ffavicon-16x16.png?v=1587944998373">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/css/intlTelInput.css">
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/js/intlTelInput.min.js" defer></script>
+    <script src="/client.js" defer></script>
+  </head>
+  
+  <body>
+    <header><h1>XOXO fax send</h1></header>
+
+    <main>
+      <p>
+        Send a PDF as a fax for XOXO frands!
+      </p>
+      <p>
+        Faxes are sent from the US number <span style="white-space:nowrap;">+1 (337) 329-9696 (FAX XOXO)</span>, hosted on Glitch and Twilio.
+      </p>
+      <p>
+        Faxes are uploaded as PDFs and stored in Glitch's <code>/tmp</code> storage.
+        They are deleted five to fifteen minutes after the app was last used.
+        Twilio is configured to not store the sent faxes.
+        Don't trust this?  Create a Twilio account, set up a fax number, and 
+        <a href="https://glitch.com/edit/#!/remix/xoxo-fax-send">remix this app</a>.
+      </p>
+
+      <h2>📠</h2>
+      <form method="post" action="/send-fax" enctype="multipart/form-data">
+        <label>
+          PDF of fax to send
+          <input type="file" name="fax" id="fax" accept=".pdf">
+        </label>
+        <label>
+          Phone number to send to
+          <input type="tel" name="phone" id="phone">
+          <span id="valid-msg" class="hide" title="probably a valid number!">👍</span>
+          <span id="error-msg" class="hide" title="maybe not a valid number?">😕</span>
+          <br>
+        </label>
+        <label for="quality-select">
+          Quality
+          <select name="quality" id="quality-select">
+              <option>standard</option>
+              <option selected>fine</option>
+              <option>superfine</option>
+          </select>
+        </label>
+        <label>
+          Password (from XOXO Slack)
+          <input type="password" maxlength="100" name="secret"/>
+        </label>
+        <button>send fax</button>
+      </form>
+      
+      <p>
+        This Glitch app is currently running on their free plan.
+      </p>
+      <p>
+        Maintaining a US fax number on Twilio costs $1/mo.
+      </p>
+      <p>
+        Sending or receiving a fax on Twilio costs approximately <a href="https://support.twilio.com/hc/en-us/articles/360007629653-How-Does-Twilio-Programmable-Fax-Pricing-Work-">2½¢/pg.</a> to US domestic numbers at "fine" quality.  International and/or other quality faxes may cost more.
+      </p>
+    </main>
+
+    <footer>
+      Made with <a href="https://glitch.com">Glitch</a> and <a href="https://www.twilio.com">Twilio</a>
+      by <a href="http://vitor.io">Vitorio</a> for the <a href="https://xoxofest.com/">XOXO</a> Slack.
+    </footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
